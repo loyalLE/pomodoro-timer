@@ -1,0 +1,15 @@
+{
+  "name": "cc-workspace",
+  "description": "CC workspace — Claude Code tools and project launchers",
+  "private": true,
+  "scripts": {
+    "pomodoro": "cd pomodoro && npm start",
+    "pomodoro:install": "cd pomodoro && npm install",
+    "pomodoro:build": "cd pomodoro && npm run build"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-code": "^2.1.169",
+    "@anthropic-ai/sdk": "^0.102.0",
+    "claude-code": "^1.0.0"
+  }
+}

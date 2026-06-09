@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
+  <title>番茄钟</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="title">🍅 番茄钟</h1>
+      <div class="header-actions">
+        <button class="btn-icon" id="btnPin" title="窗口置顶">📌</button>
+        <button class="btn-icon" id="btnSettings" title="设置">⚙️</button>
+      </div>
+    </header>
+
+    <!-- Phase Tabs -->
+    <div class="phase-tabs">
+      <button class="phase-tab active" data-phase="work">工作</button>
+      <button class="phase-tab" data-phase="shortBreak">短休息</button>
+      <button class="phase-tab" data-phase="longBreak">长休息</button>
+    </div>
+
+    <!-- Timer Circle -->
+    <div class="timer-container">
+      <svg class="timer-ring" viewBox="0 0 200 200">
+        <circle class="ring-bg" cx="100" cy="100" r="90" />
+        <circle class="ring-progress" cx="100" cy="100" r="90" id="progressRing" />
+      </svg>
+      <div class="timer-display">
+        <span class="timer-minutes" id="minutes">25</span>
+        <span class="timer-separator">:</span>
+        <span class="timer-seconds" id="seconds">00</span>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="btn btn-primary" id="btnStart">
+        <span class="btn-text">开始</span>
+      </button>
+      <button class="btn btn-secondary" id="btnReset" disabled>
+        <span class="btn-text">重置</span>
+      </button>
+    </div>
+
+    <!-- Session Dots -->
+    <div class="sessions">
+      <span class="sessions-label">今日已完成: </span>
+      <span class="session-dots" id="sessionDots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+      <span class="session-count" id="sessionCount">0</span>
+    </div>
+
+    <!-- Settings Panel (hidden by default) -->
+    <div class="settings-overlay" id="settingsOverlay">
+      <div class="settings-panel">
+        <h2>设置</h2>
+        <div class="setting-group">
+          <label>工作时间（分钟）</label>
+          <input type="number" id="settingWork" min="1" max="120" value="25">
+        </div>
+        <div class="setting-group">
+          <label>短休息（分钟）</label>
+          <input type="number" id="settingShortBreak" min="1" max="30" value="5">
+        </div>
+        <div class="setting-group">
+          <label>长休息（分钟）</label>
+          <input type="number" id="settingLongBreak" min="1" max="60" value="15">
+        </div>
+        <div class="setting-group">
+          <label>长休息间隔（工作次数）</label>
+          <input type="number" id="settingLongBreakInterval" min="2" max="8" value="4">
+        </div>
+        <div class="setting-group checkbox-group">
+          <label>
+            <input type="checkbox" id="settingSound" checked>
+            计时结束播放提示音
+          </label>
+        </div>
+        <div class="setting-group checkbox-group">
+          <label>
+            <input type="checkbox" id="settingNotification" checked>
+            计时结束桌面通知
+          </label>
+        </div>
+        <div class="setting-actions">
+          <button class="btn btn-primary" id="btnSaveSettings">保存</button>
+          <button class="btn btn-secondary" id="btnCloseSettings">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
