@@ -28,7 +28,11 @@
     <!-- Timer Circle -->
     <div class="timer-container">
       <svg class="timer-ring" viewBox="0 0 200 200">
+        <!-- Outer glow ring -->
+        <circle class="ring-glow" cx="100" cy="100" r="90" />
+        <!-- Background ring -->
         <circle class="ring-bg" cx="100" cy="100" r="90" />
+        <!-- Progress ring -->
         <circle class="ring-progress" cx="100" cy="100" r="90" id="progressRing" />
       </svg>
       <div class="timer-display">
@@ -36,6 +40,7 @@
         <span class="timer-separator">:</span>
         <span class="timer-seconds" id="seconds">00</span>
       </div>
+      <div class="timer-phase-label" id="phaseLabel">工作时间</div>
     </div>
 
     <!-- Controls -->
@@ -50,7 +55,7 @@
 
     <!-- Session Dots -->
     <div class="sessions">
-      <span class="sessions-label">今日已完成: </span>
+      <span class="sessions-label">今日已完成:</span>
       <span class="session-dots" id="sessionDots">
         <span class="dot"></span>
         <span class="dot"></span>

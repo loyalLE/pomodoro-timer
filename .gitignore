@@ -4,3 +4,10 @@ dist/
 .DS_Store
 Thumbs.db
 *.log
+
+# Claude Code
+.claude/settings.local.json
+.claude/skills/
+
+# Temp
+skills-main/

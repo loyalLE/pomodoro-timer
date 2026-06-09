@@ -7,8 +7,8 @@ let isQuitting = false;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 420,
-    height: 620,
+    width: 440,
+    height: 660,
     resizable: false,
     frame: true,
     title: '番茄钟 - Pomodoro Timer',

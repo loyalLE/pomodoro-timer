@@ -24,6 +24,7 @@ const el = {
   btnSaveSettings: document.getElementById('btnSaveSettings'),
   btnCloseSettings: document.getElementById('btnCloseSettings'),
   toast: document.getElementById('toast'),
+  phaseLabel: document.getElementById('phaseLabel'),
 };
 
 // --- Constants ---
@@ -175,7 +176,7 @@ function resetTimer() {
   updateDisplay();
   updateProgressRing();
   updateButtonState();
-  el.timerContainer.classList.remove('finished');
+  el.timerContainer.classList.remove('finished', 'running');
 }
 
 function startTimer() {
@@ -193,6 +194,7 @@ function startTimer() {
   }
 
   state.timerInterval = setInterval(tick, 1000);
+  el.timerContainer.classList.add('running');
   updateButtonState();
   updateDisplay();
 }
@@ -200,6 +202,7 @@ function startTimer() {
 function pauseTimer() {
   stopTimer();
   state.status = 'paused';
+  el.timerContainer.classList.remove('running');
   updateButtonState();
 }
 
@@ -252,8 +255,12 @@ function setPhase(phase) {
   el.phaseTabs.forEach(tab => {
     tab.classList.toggle('active', tab.dataset.phase === phase);
   });
-  // Update timer container class
+  // Update timer container class (preserve 'running' if active)
+  const isRunning = el.timerContainer.classList.contains('running');
   el.timerContainer.className = 'timer-container phase-' + phase;
+  if (isRunning) el.timerContainer.classList.add('running');
+  // Update phase label
+  el.phaseLabel.textContent = getPhaseName(phase);
   resetTimer();
 }
 
